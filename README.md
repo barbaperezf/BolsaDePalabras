@@ -27,3 +27,70 @@ MPI igual funciona y genera el CSV, pero no imprime speed-up.
 
 El programa funciona para cualquier numero k de libros y cualquier numero q
 de procesos, no estan hardcodeados.
+
+Archivo tasks.json para compilar con Run Build Tasks
+
+    g++ -std=c++17 -O2 BdP_serial.cpp -lcurl -o BdP_serial
+
+    {
+    	"version": "2.0.0",
+    	"tasks": [
+    		{
+    			"type": "cppbuild",
+    			"label": "C/C++: g++.exe build active file",
+    			"command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+    			"args": [
+    				"-fdiagnostics-color=always",
+    				"-g",
+    				"${file}",
+    				"-I",
+    				"${MSMPI_INC}",
+    				"-L",
+    				"${MSMPI_LIB64}",
+    				"-lmsmpi",
+    				"-L",
+    				"C:\\msys64\\ucrt64\\lib",
+    				"-lcurl",
+    				"-o",
+    				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+    			],
+    			"options": {
+    				"cwd": "${fileDirname}"
+    			},
+    			"problemMatcher": [
+    				"$gcc"
+    			],
+    			"group": {
+    				"kind": "build",
+    				"isDefault": true
+    			},
+    			"detail": "compiler: C:\\msys64\\ucrt64\\bin\\g++.exe"
+    		}
+    	]
+    }
+
+Archivo c_cpp_properties.json dentro de .vscode
+
+    {
+        "configurations": [
+            {
+                "name": "Win32",
+                "includePath": [
+                    "${workspaceFolder}/**",
+                    "${MSMPI_INC}",
+                    "C:\\msys64\\ucrt64\\include"
+                ],
+                "defines": [
+                    "_DEBUG",
+                    "UNICODE",
+                    "_UNICODE"
+                ],
+                "compilerPath": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
+                "cStandard": "c17",
+                "cppStandard": "gnu++17",
+                "intelliSenseMode": "windows-gcc-x64"
+            }
+        ],
+        "version": 4
+    }
+
