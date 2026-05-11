@@ -30,8 +30,6 @@ de procesos, no estan hardcodeados.
 
 Archivo tasks.json para compilar con Run Build Tasks
 
-    g++ -std=c++17 -O2 BdP_serial.cpp -lcurl -o BdP_serial
-
     {
     	"version": "2.0.0",
     	"tasks": [
